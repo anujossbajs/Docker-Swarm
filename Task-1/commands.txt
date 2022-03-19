@@ -1,0 +1,27 @@
+Create a manager node and 2 workernodes. Create a Visualizer service on manager node using image 
+"dockersamples/visualizer" . Run nginx service . Scale the service to 3 copies . Deploy another service using 
+redis 3.0.6 image with 3 copies. Upgrade the image to redis 3.0.7 . Rollback to the original version.
+-------------------------------------------------------------------------------------------------
+
+Prerequisites:
+
+- Install docker on all 3 nodes.
+- Add ipaddress and hostname in all /etc/hosts files.
+- Run docker swarm init --advertise-aadr <ipaddress> on manager node
+- Run docker swarm join --token command on all worker nodes
+
+On Manager node run below commands:
+
+#docker node ls
+#docker service create --name=viz --publish=8080:8080/tcp --constraint=node.role==manager --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock dockersamples/visualizer
+#docker service create --name=webservice -d --publish 80:80 nginx:latest
+#docker service scale webservice=3
+#docker service create --replicas 3 --name redis --update-delay 10s redis:3.0.6
+#docker service ps redis
+#docker service update --image redis:3.0.7 redis
+#docker service ps redis
+#docker service rollback redis
+#docker service ps redis
+
+open browser and enter url to view visualizer	-> ipaddress:8080 or localhost:8080
+
