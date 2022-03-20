@@ -6,7 +6,7 @@ redis 3.0.6 image with 3 copies. Upgrade the image to redis 3.0.7 . Rollback to 
 Prerequisites:
 
 - Install docker on all 3 nodes.
-- Add ipaddress and hostname in all /etc/hosts files.
+- Add all 3 ipaddress and hostnames in /etc/hosts file on each node.
 - Run docker swarm init --advertise-aadr <ipaddress> on manager node
 - Run docker swarm join --token command on all worker nodes
 
