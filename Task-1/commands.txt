@@ -7,8 +7,8 @@ Prerequisites:
 
 - 3 VM ->  One VM for running masternode and 2 VM for running workernodes.
 - Install docker on all 3 nodes.
-- Add all 3 ipaddress and hostnames in /etc/hosts file on each node.
-- Run docker swarm init --advertise-aadr <ipaddress> on manager node
+- Add all 3 private ipaddress and hostnames in /etc/hosts file on each node.
+- Run docker swarm init --advertise-aadr <ipofmanagernode> on manager node
 - Run docker swarm join --token command on all worker nodes
 
 On Manager node run below commands:
